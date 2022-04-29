@@ -5,6 +5,8 @@ import Footer from '../Footer/Footer.js';
 import EditAvatartPopup from '../EditAvatarPopup/EditAvatarPopup.js';
 import EditProfilePopup from '../EditProfilePopup/EditProfilePopup.js';
 import AddCardPopup from '../AddCardPopup/AddCardPopup.js';
+import ImagePopup from '../ImagePopup/imagePopup.js';
+import ConfirmPopup from '../ConfirmPopup/ConfirmPopup.js';
 
 
 function App() {
@@ -12,6 +14,10 @@ function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
   const [isAddCardPopupOpen, setIsAddCardPopupOpen] = React.useState(false);
+  const [isImagePopupOpen, setImagePopupOpen] = React.useState(false);
+  const [selectedCard, setSelectedCard] = React.useState({});
+  const [isConfirmPopupOpen, setConfirmPopupOpen] = React.useState(false);
+  const [deletedCard, setDeletedCard] = React.useState({});
   
   function handleEditAvatarClick() { 
     setIsEditAvatarPopupOpen(true); 
@@ -25,11 +31,22 @@ function App() {
     setIsAddCardPopupOpen(true);
   }
 
+  function handleCardImageClick(card) {
+    setImagePopupOpen(true);
+    setSelectedCard(card);
+  }
+
+  function handleDeleteCardClick(card) {
+    setConfirmPopupOpen(true);
+    setDeletedCard(card);
+  }
+
   function closePopups() {   
     setIsEditAvatarPopupOpen(false);
     setIsEditProfilePopupOpen(false);
     setIsAddCardPopupOpen(false);
-    //setSelectedCard(null);
+    setImagePopupOpen(false);
+    setConfirmPopupOpen(false);
 }
 
   return (
@@ -39,24 +56,32 @@ function App() {
             onEditAvatar={handleEditAvatarClick}
             onEditProfile={handleEditProfileClick}
             onAddCard={handleAddCardClick}
+            onCardClick={handleCardImageClick}
+            onDeleteButtonClick={handleDeleteCardClick}
         />
         <Footer />
         <EditAvatartPopup 
               isOpen={isEditAvatarPopupOpen} 
-              //onUpdateAvatar={handleUpdateAvatar} 
               onClose={closePopups} 
         /> 
         <EditProfilePopup 
               isOpen={isEditProfilePopupOpen} 
-              //onUpdateUser={handleUpdateUser} 
               onClose={closePopups}
         />
         <AddCardPopup 
               isOpen={isAddCardPopupOpen} 
-              //onAddCard={handleAddPlaceSubmit} 
               onClose={closePopups}
         />
-        
+        <ImagePopup
+              isOpen={isImagePopupOpen} 
+              card={selectedCard}
+              onClose={closePopups}
+        />
+        <ConfirmPopup
+              isOpen={isConfirmPopupOpen}
+              card={deletedCard}
+              onClose={closePopups}
+        />
     </div>    
   );
 }

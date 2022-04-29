@@ -3,25 +3,12 @@ import PopupWithForm from '../PopupWithForm/PopupWithForm';
 
 
 function EditAvatartPopup(props){
-//const avavtarUrl = React.useRef();
-
-    // function handleSubmit(evt) {
-    //     evt.preventDefault();
-    //     props.onUpdateAvatar(avavtarUrl.current.value);
-    // } 
-
-    // React.useEffect(
-    //     ()=>{
-    //         avavtarUrl.current.value='';
-    //     },[props.isOpen]
-    // );
 
     return (            
         <PopupWithForm 
             title="Обновить аватар" 
             name="edit-avatar" 
             isOpen={props.isOpen} 
-            //onSubmit={handleSubmit}
             onClose={props.onClose} 
             buttonText="Сохранить">
             
