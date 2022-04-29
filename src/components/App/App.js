@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 import Header from '../Header/Header.js';
 import Main from '../Main/Main.js';
 import Footer from '../Footer/Footer.js';
@@ -11,13 +12,13 @@ import ConfirmPopup from '../ConfirmPopup/ConfirmPopup.js';
 
 function App() {
 
-  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
-  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
-  const [isAddCardPopupOpen, setIsAddCardPopupOpen] = React.useState(false);
-  const [isImagePopupOpen, setImagePopupOpen] = React.useState(false);
-  const [selectedCard, setSelectedCard] = React.useState({});
-  const [isConfirmPopupOpen, setConfirmPopupOpen] = React.useState(false);
-  const [deletedCard, setDeletedCard] = React.useState({});
+  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
+  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
+  const [isAddCardPopupOpen, setIsAddCardPopupOpen] = useState(false);
+  const [isImagePopupOpen, setImagePopupOpen] = useState(false);
+  const [selectedCard, setSelectedCard] = useState({});
+  const [isConfirmPopupOpen, setConfirmPopupOpen] = useState(false);
+  const [deletedCard, setDeletedCard] = useState({});
   
   function handleEditAvatarClick() { 
     setIsEditAvatarPopupOpen(true); 
