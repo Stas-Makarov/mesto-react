@@ -17,6 +17,6 @@ _____
 #### - ООП
 ____
 
-- [ссылка на GitHub Pages](https://stas-makarov.github.io/mesto-react/public/index.html).
+- [ссылка на GitHub Pages](https://stas-makarov.github.io/mesto-react/).
 
 ____
