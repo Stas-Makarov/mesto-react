@@ -19,6 +19,7 @@
 @import url('../src/blocks/elements-grid/__image-container/elements-grid__image-container.css');
 @import url('../src/blocks/elements-grid/__item-image/elements-grid__item-image.css');
 @import url('../src/blocks/elements-grid/__item-delete/elements-grid__item-delete.css');
+@import url('../src/blocks/elements-grid/__item-delete/_active/elements-grid__item-delete_active.css');
 @import url('../src/blocks/elements-grid/__item-caption/elements-grid__item-caption.css');
 @import url('../src/blocks/elements-grid/__item-text/elements-grid__item-text.css');
 @import url('../src/blocks/elements-grid/__item-like-container/elements-grid__item-like-container.css');

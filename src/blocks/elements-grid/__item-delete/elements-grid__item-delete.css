@@ -12,6 +12,7 @@
     background-size: 18px;
     background-position: center;
     background-color: transparent;
+    display: none;
 }
 
 .elements-grid__item-delete:hover {

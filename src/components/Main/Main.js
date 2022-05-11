@@ -1,51 +1,38 @@
 import React from 'react';
-import {useEffect, useState} from 'react';
 import Card from '../Card/Card.js';
-import { api } from '../../utils/Api.js';
+import { useContext } from 'react';
+import CurrentUserContext from '../../contexts/CurrentUserContext.js';
 
 function Main(props) {
-    const [userName, setUserName] = useState('');
-    const [userDescription, setUserDescription] = useState('');
-    const [userAvatar, setUserAvatar] = useState('');
-    const [cards, setCards] = useState([]);
-
-    useEffect(() => {
-        Promise.all([api.getUserInfo(), api.getInitialCards()])
-            .then(([user, cards]) => {
-                setUserName(user.name);
-                setUserDescription(user.about);
-                setUserAvatar(user.avatar);
-                setCards(cards)
-            })
-            .catch((err) => {
-                console.log(err);
-            })
-    }, [])
+    const currentUser = useContext(CurrentUserContext);
 
     return (
         <main className="main">
             <section className="profile">
                 <div className="profile__container">
                     <div className="profile__avatar-container">
-                        <button className="profile__avatar-button" type="button" onClick={props.onEditAvatar}></button>
-                        <img className="profile__avatar" src={userAvatar} alt="фото кусто"/>
+                        <button className="profile__avatar-button" type="button" onClick={props.avatar}></button>
+                        <img className="profile__avatar" src={currentUser.userAvatar} alt="фото кусто"/>
                     </div>
                     <div className="profile__info">
-                        <h1 className="profile__heading-text">{userName}</h1>
+                        <h1 className="profile__heading-text">{currentUser.name}</h1>
                         <button className="profile__edit-button" type="button" onClick={props.onEditProfile}></button>
-                        <p className="profile__paragraph-text">{userDescription}</p>
+                        <p className="profile__paragraph-text">{currentUser.about}</p>
                     </div>
                 </div>
                 <button className="profile__add-button" type="button" onClick={props.onAddCard}></button>
             </section>
             <section>
                 <ul className="elements-grid">
-                    {cards.map((card) => (
+                    {props.cards.map((card) => (
                         < Card
                             card={card}
                             onCardClick={props.onCardClick}
-                            onDeleteButtonClick={props.onDeleteButtonClick}
+                            // onDeleteButtonClick={props.onDeleteButtonClick}
                             key={card._id}
+                            owner={card.owner}
+                            onCardLike={props.handleCardLike}
+                            onCardDelete={props.handleCardDelete}
                         />
                     ))}
                 </ul>
