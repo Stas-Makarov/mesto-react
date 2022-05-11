@@ -11,8 +11,8 @@ function Main(props) {
             <section className="profile">
                 <div className="profile__container">
                     <div className="profile__avatar-container">
-                        <button className="profile__avatar-button" type="button" onClick={props.avatar}></button>
-                        <img className="profile__avatar" src={currentUser.userAvatar} alt="фото кусто"/>
+                        <button className="profile__avatar-button" type="button" onClick={props.onEditAvatar}></button>
+                        <img className="profile__avatar" src={currentUser.avatar} alt="фото кусто"/>
                     </div>
                     <div className="profile__info">
                         <h1 className="profile__heading-text">{currentUser.name}</h1>
