@@ -31,7 +31,7 @@ function AddCardPopup(props){
             isOpen={props.isOpen} 
             onClose={props.onClose}
             onSubmit={handleSubmit} 
-            buttonText="Сохранить">
+            buttonText={props.isRenderLoading ? 'Сохранение...' : 'Сохранить'}>
             
             <input className="popup__form-item popup__form-item_type_place-name" type="text" name="name"  value={name} onChange={handleSetName} placeholder="Название" minLength="2" maxLength="30" required />
             <span className="popup__form-item-error popup__form-item-error_type_name"></span>

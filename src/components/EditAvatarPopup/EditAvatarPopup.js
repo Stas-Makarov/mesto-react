@@ -1,10 +1,11 @@
 import React from 'react';
+import { useRef } from 'react';
 import PopupWithForm from '../PopupWithForm/PopupWithForm';
 
 
 function EditAvatartPopup(props){
 
-    const ref = React.useRef();
+    const ref = useRef();
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -18,7 +19,7 @@ function EditAvatartPopup(props){
             isOpen={props.isOpen} 
             onClose={props.onClose} 
             onSubmit={handleSubmit}
-            buttonText="Сохранить">
+            buttonText={props.isRenderLoading ? 'Сохранение...' : 'Сохранить'}>
             
             <input className="popup__form-item popup__form-item_type_link" type="url" ref={ref} name="avatar" placeholder="Ссылка на страницу" required />
             <span className="popup__form-item-error popup__form-item-error_type_avatar"></span>

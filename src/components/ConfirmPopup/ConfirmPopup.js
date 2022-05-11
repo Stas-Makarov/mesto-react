@@ -15,7 +15,7 @@ function ConfirmPopup(props){
             isOpen={props.isOpen} 
             onClose={props.onClose} 
             onSubmit={handleSubmit}
-            buttonText="Да">
+            buttonText={props.isRenderLoading ? 'Сохранение...' : 'Да'}>
 
         </PopupWithForm>
     );

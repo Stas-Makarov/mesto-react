@@ -12,7 +12,7 @@ function EditProfilePopup(props){
     useEffect(() => {
         setName(currentUser.name)
         setDescription(currentUser.about)
-      }, [currentUser, props.isOpen])
+      }, [currentUser, props.isOpen]);
 
     function handleSubmit(e) {
         e.preventDefault()
@@ -23,11 +23,11 @@ function EditProfilePopup(props){
       }
 
     function handleChangeName(e) {
-        setName(e.target.value)
+        setName(e.target.value);
     }
     
     function handleChangeDescription(e) {
-        setDescription(e.target.value)
+        setDescription(e.target.value);
     }  
     
     return (
@@ -37,7 +37,7 @@ function EditProfilePopup(props){
             isOpen={props.isOpen} 
             onClose={props.onClose} 
             onSubmit={handleSubmit}
-            buttonText="Сохранить">
+            buttonText={props.isRenderLoading ? 'Сохранение...' : 'Сохранить'}>
 
             <input className="popup__form-item popup__form-item_type_person-name" type="text" name="name" onChange={handleChangeName} value={name} minLength="2" maxLength="40" placeholder="Имя" required />
             <span className="popup__form-item-error popup__form-item-error_type_name"></span>     

@@ -26,6 +26,7 @@ function App() {
     avatar: ''
   });
   const [cards, setCards] = useState([]);
+  const [isRenderLoading, setRenderLoading] = useState(false);
 
   useEffect(() => {
     api.getUserInfo()
@@ -58,9 +59,12 @@ function App() {
       .catch((err) => {
         console.log(err);
       })
+      .finally(() => setRenderLoading(false));
   }
 
   function handleCardDeleteSubmit(card) {
+    setRenderLoading(true);
+
     api.deleteCard(card._id)
       .then(() => {
         setCards((state) => state.filter((c) => c._id !== card._id));
@@ -69,9 +73,12 @@ function App() {
       .catch((err) => {
         console.log(err);
       })
+      .finally(() => setRenderLoading(false));
   }
 
   function handleUpdateUser(userData) {
+    setRenderLoading(true);
+
     api.updateUserInfo(userData)
       .then(userData => {
         setCurrentUser(userData);
@@ -80,9 +87,12 @@ function App() {
       .catch((err) => {
         console.log(err);
       })
+      .finally(() => setRenderLoading(false));
   }
 
   function handleUpdateAvatar(data) {
+    setRenderLoading(true);
+
     api.editAvatar(data)
       .then(data => {
         setCurrentUser(data);
@@ -91,9 +101,12 @@ function App() {
       .catch((err) => {
         console.log(err);
       })
+      .finally(() => setRenderLoading(false));
   }
 
   function handleAddCardSubmit(cardData) {
+    setRenderLoading(true);
+    
     api.addNewCard(cardData)
       .then(newCard => {
         setCards([newCard, ...cards]);
@@ -102,6 +115,7 @@ function App() {
       .catch((err) => {
         console.log(err);
       })
+      .finally(() => setRenderLoading(false));
   }
  
   function handleEditAvatarClick() { 
@@ -152,16 +166,19 @@ function App() {
               isOpen={isEditAvatarPopupOpen} 
               onClose={closePopups} 
               onUpdateAvatar={handleUpdateAvatar}
+              isRenderLoading={isRenderLoading}
         /> 
         <EditProfilePopup 
               isOpen={isEditProfilePopupOpen} 
               onClose={closePopups}
               onUpdateUser={handleUpdateUser}
+              isRenderLoading={isRenderLoading}
         />
         <AddCardPopup 
               isOpen={isAddCardPopupOpen} 
               onClose={closePopups}
               onAddCard={handleAddCardSubmit}
+              isRenderLoading={isRenderLoading}
         />
         <ImagePopup
               isOpen={isImagePopupOpen} 
@@ -173,6 +190,7 @@ function App() {
               card={deletedCard}
               onClose={closePopups}
               onDeleteCard={handleCardDeleteSubmit}
+              isRenderLoading={isRenderLoading}
         />
       </CurrentUserContext.Provider>
     </div>    
