@@ -1,13 +1,14 @@
 import React from 'react';
+import { useEffect, useState } from 'react';
 import PopupWithForm from '../PopupWithForm/PopupWithForm.js';
 
 function AddCardPopup(props){
-    const [name, setName] = React.useState('')
-    const [link, setLink] = React.useState('')
+    const [name, setName] = useState('');
+    const [link, setLink] = useState('');
 
-    React.useEffect(() => {
-        setName('')
-        setLink('')
+    useEffect(() => {
+        setName('');
+        setLink('');
     }, [props.isOpen])
 
     function handleSetName(e) {

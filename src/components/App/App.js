@@ -60,10 +60,11 @@ function App() {
       })
   }
 
-  function handleCardDelete(card) {
+  function handleCardDeleteSubmit(card) {
     api.deleteCard(card._id)
       .then(() => {
         setCards((state) => state.filter((c) => c._id !== card._id));
+        closePopups();
       })
       .catch((err) => {
         console.log(err);
@@ -102,10 +103,7 @@ function App() {
         console.log(err);
       })
   }
-
-
-
-  
+ 
   function handleEditAvatarClick() { 
     setIsEditAvatarPopupOpen(true); 
   } 
@@ -123,10 +121,10 @@ function App() {
     setSelectedCard(card);
   }
 
-  // function handleDeleteCardClick(card) {
-  //   setConfirmPopupOpen(true);
-  //   setDeletedCard(card);
-  // }
+  function handleDeleteCardClick(card) {
+    setConfirmPopupOpen(true);
+    setDeletedCard(card);
+  }
 
   function closePopups() {   
     setIsEditAvatarPopupOpen(false);
@@ -145,10 +143,9 @@ function App() {
             onEditProfile={handleEditProfileClick}
             onAddCard={handleAddCardClick}
             onCardClick={handleCardImageClick}
-            // onDeleteButtonClick={handleDeleteCardClick}
+            onDeleteClick={handleDeleteCardClick}
             cards={cards}
             handleCardLike={handleCardLike}
-            handleCardDelete={handleCardDelete}
         />
         <Footer />
         <EditAvatartPopup 
@@ -175,6 +172,7 @@ function App() {
               isOpen={isConfirmPopupOpen}
               card={deletedCard}
               onClose={closePopups}
+              onDeleteCard={handleCardDeleteSubmit}
         />
       </CurrentUserContext.Provider>
     </div>    
