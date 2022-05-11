@@ -92,6 +92,17 @@ function App() {
       })
   }
 
+  function handleAddCardSubmit(cardData) {
+    api.addNewCard(cardData)
+      .then(newCard => {
+        setCards([newCard, ...cards]);
+        closePopups();
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }
+
 
 
   
@@ -153,6 +164,7 @@ function App() {
         <AddCardPopup 
               isOpen={isAddCardPopupOpen} 
               onClose={closePopups}
+              onAddCard={handleAddCardSubmit}
         />
         <ImagePopup
               isOpen={isImagePopupOpen} 

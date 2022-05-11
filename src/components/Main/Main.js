@@ -28,7 +28,6 @@ function Main(props) {
                         < Card
                             card={card}
                             onCardClick={props.onCardClick}
-                            // onDeleteButtonClick={props.onDeleteButtonClick}
                             key={card._id}
                             owner={card.owner}
                             onCardLike={props.handleCardLike}
