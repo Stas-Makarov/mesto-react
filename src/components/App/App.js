@@ -28,28 +28,23 @@ function App() {
   const [cards, setCards] = useState([]);
   const [isRenderLoading, setRenderLoading] = useState(false);
 
+
   useEffect(() => {
-    api.getUserInfo()
-      .then(userData => {
+    Promise.all([
+        api.getUserInfo(),
+        api.getInitialCards()
+      ])
+      .then(([userData, cardsData]) => {
         setCurrentUser(userData);
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-  }, []);
-  
-  useEffect(() => {
-    api.getInitialCards()
-      .then(cardsData => {
         setCards(cardsData);
       })
       .catch((err) => {
         console.log(err);
-      })
+      });
   }, []);
 
+  
   function handleCardLike(card) {
-    
     const isLiked = card.likes.some(like => like._id === currentUser._id);
 
     api.changeLikeCardStatus(card._id, isLiked)
